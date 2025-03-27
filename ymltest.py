@@ -7,3 +7,7 @@ params = {'param_name':"param value", 'param_name2':"param2 value value"}
 offer = {'ID0':{'vendor':"Boyard", 'vendorCode':"ST000", 'pictures': pictures, 'params': params}}
 a.add_offer(offer)
 a.print()
+a.write('test.xml')
+
+b = YML('test.xml')
+b.print()

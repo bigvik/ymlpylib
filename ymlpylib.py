@@ -2,15 +2,22 @@
 
 class YML:
 
-	def __init__(self):
+	def __init__(self, filename=''):
 		import xml.etree.ElementTree as ET
-		from datetime import datetime
+		from datetime import datetime as DT
+		self.DT = DT
 		self.ET = ET
-		self.root = self.ET.Element('yml_catalog')
-		self.root.set('date', datetime.now().strftime('%Y-%m-%d %H:%M'))
+		if filename:
+			self.ymltree = ET.parse(filename)
+			self.root = self.ymltree.getroot()
+		else:
+			self.root = self.ET.Element('yml_catalog')
 		self.offerlist = []
 
 	def __finally(self):
+		if not self.offerlist:
+			return
+		self.root.set('date', self.DT.now().strftime('%Y-%m-%d %H:%M'))
 		for el in self.offerlist:
 			offer = self.ET.SubElement(self.offers, 'offer')
 			offer_id = list(el.keys())[0]
