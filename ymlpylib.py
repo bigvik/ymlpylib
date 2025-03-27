@@ -54,6 +54,10 @@ class YML:
 		self.__finally()
 		self.ymltree.write(filename, encoding="utf-8", xml_declaration=True)
 
+	def print(self):
+		self.__finally()
+		print(self.ET.tostring(self.root, encoding="utf-8", xml_declaration=True))
+
 
 if __name__ == '__main__':
     pass
